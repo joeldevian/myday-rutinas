@@ -1,0 +1,103 @@
+.calendar {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Calendar Header */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-md);
+}
+
+.calendar-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-medium);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.nav-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-green);
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.calendar-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-medium);
+}
+
+.day-name {
+    padding: var(--space-md);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calendar-days {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.calendar-week:last-child {
+    border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .calendar-header {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: flex-start;
+    }
+
+    .calendar-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .day-name {
+        padding: var(--space-sm);
+        font-size: var(--font-size-xs);
+    }
+}
