@@ -68,7 +68,15 @@ export const RoutineCard = ({
                 {/* Content */}
                 <div className="routine-content">
                     <h4 className="routine-title">{routine.title}</h4>
-                    <span className="routine-time">{routine.time}</span>
+                    <div className="routine-time-range">
+                        <span className="routine-time">{routine.time}</span>
+                        {routine.endTime && (
+                            <>
+                                <span className="routine-time-separator"> - </span>
+                                <span className="routine-time">{routine.endTime}</span>
+                            </>
+                        )}
+                    </div>
                 </div>
 
                 {/* Menu Button - Now inline */}

@@ -9,6 +9,7 @@ export const RoutineModal = ({ isOpen, onClose, onSave, routine, defaultTimeOfDa
     const [formData, setFormData] = useState({
         title: '',
         time: '09:00',
+        endTime: '10:00',
         icon: 'Circle',
     });
 
@@ -20,13 +21,16 @@ export const RoutineModal = ({ isOpen, onClose, onSave, routine, defaultTimeOfDa
             setFormData({
                 title: routine.title,
                 time: routine.time,
+                endTime: routine.endTime || '10:00',
                 icon: routine.icon,
             });
         } else {
             // Si es nuevo, resetear
+            const defaultStart = getDefaultTime(defaultTimeOfDay);
             setFormData({
                 title: '',
-                time: getDefaultTime(defaultTimeOfDay),
+                time: defaultStart,
+                endTime: getDefaultEndTime(defaultStart),
                 icon: 'Circle',
             });
         }
@@ -40,6 +44,12 @@ export const RoutineModal = ({ isOpen, onClose, onSave, routine, defaultTimeOfDa
         return '09:00';
     };
 
+    const getDefaultEndTime = (startTime) => {
+        const [hours, minutes] = startTime.split(':');
+        const endHour = (parseInt(hours) + 1).toString().padStart(2, '0');
+        return `${endHour}:${minutes}`;
+    };
+
     const validate = () => {
         const newErrors = {};
 
@@ -48,7 +58,15 @@ export const RoutineModal = ({ isOpen, onClose, onSave, routine, defaultTimeOfDa
         }
 
         if (!formData.time) {
-            newErrors.time = 'La hora es requerida';
+            newErrors.time = 'La hora de inicio es requerida';
+        }
+
+        if (!formData.endTime) {
+            newErrors.endTime = 'La hora de finalización es requerida';
+        }
+
+        if (formData.time && formData.endTime && formData.endTime <= formData.time) {
+            newErrors.endTime = 'La hora de finalización debe ser posterior a la de inicio';
         }
 
         setErrors(newErrors);
@@ -113,10 +131,10 @@ export const RoutineModal = ({ isOpen, onClose, onSave, routine, defaultTimeOfDa
                         {errors.title && <span className="form-error">{errors.title}</span>}
                     </div>
 
-                    {/* Hora */}
+                    {/* Hora de Inicio */}
                     <div className="form-field">
                         <label htmlFor="time" className="form-label">
-                            Hora
+                            Hora de Inicio
                         </label>
                         <input
                             id="time"
@@ -126,6 +144,21 @@ export const RoutineModal = ({ isOpen, onClose, onSave, routine, defaultTimeOfDa
                             className={`form-input ${errors.time ? 'error' : ''}`}
                         />
                         {errors.time && <span className="form-error">{errors.time}</span>}
+                    </div>
+
+                    {/* Hora de Finalización */}
+                    <div className="form-field">
+                        <label htmlFor="endTime" className="form-label">
+                            Hora de Finalización
+                        </label>
+                        <input
+                            id="endTime"
+                            type="time"
+                            value={formData.endTime}
+                            onChange={(e) => handleChange('endTime', e.target.value)}
+                            className={`form-input ${errors.endTime ? 'error' : ''}`}
+                        />
+                        {errors.endTime && <span className="form-error">{errors.endTime}</span>}
                     </div>
 
                     {/* Selector de Iconos */}

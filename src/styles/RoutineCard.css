@@ -106,6 +106,18 @@
     font-weight: 500;
 }
 
+.routine-time-range {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.routine-time-separator {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
 /* Actions - inline with content */
 .routine-actions {
     position: relative;

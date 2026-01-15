@@ -40,6 +40,22 @@ export const useRoutines = (userId) => {
         return routines;
     };
 
+    // Migrar rutinas antiguas para agregar endTime si no lo tienen
+    const migrateRoutines = (routines) => {
+        return routines.map(routine => {
+            if (!routine.endTime && routine.time) {
+                // Calcular endTime como hora de inicio + 1 hora
+                const [hours, minutes] = routine.time.split(':');
+                const endHour = (parseInt(hours) + 1).toString().padStart(2, '0');
+                return {
+                    ...routine,
+                    endTime: `${endHour}:${minutes}`
+                };
+            }
+            return routine;
+        });
+    };
+
     // Cargar rutinas desde localStorage al montar
     useEffect(() => {
         // Don't load if no userId yet
@@ -52,10 +68,14 @@ export const useRoutines = (userId) => {
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
                 const loadedRoutines = JSON.parse(saved);
-                const resetIfNeeded = checkAndResetDaily(loadedRoutines);
+                // Primero migrar rutinas antiguas
+                const migratedRoutines = migrateRoutines(loadedRoutines);
+                // Luego resetear si es necesario
+                const resetIfNeeded = checkAndResetDaily(migratedRoutines);
                 setRoutines(resetIfNeeded);
 
-                if (resetIfNeeded !== loadedRoutines) {
+                // Guardar si hubo cambios por migración o reset
+                if (resetIfNeeded !== loadedRoutines || migratedRoutines !== loadedRoutines) {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(resetIfNeeded));
                 }
             } else {
@@ -102,6 +122,7 @@ export const useRoutines = (userId) => {
             id: generateId(),
             title: routineData.title,
             time: routineData.time,
+            endTime: routineData.endTime,
             icon: routineData.icon || 'Circle',
             completed: false,
             timeOfDay: getTimeOfDay(routineData.time),
