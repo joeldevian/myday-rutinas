@@ -134,18 +134,14 @@
 }
 
 /* Time input clock icon styling */
-.form-input[type="time"] {
-    color-scheme: dark;
-}
-
 .form-input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+    filter: invert(1) brightness(100);
     cursor: pointer;
 }
 
 /* Firefox */
 .form-input[type="time"]::-moz-calendar-picker-indicator {
-    filter: invert(1);
+    filter: invert(1) brightness(100);
     cursor: pointer;
 }
 
