@@ -1,6 +1,6 @@
 import { useAuth } from '../contexts/AuthContext';
-import { LogOut, Home, Calendar as CalendarIcon, Settings as SettingsIcon, ChevronLeft, ChevronRight, Clock, BarChart3 } from 'lucide-react';
-import { useState } from 'react';
+import { LogOut, Home, Calendar as CalendarIcon, Settings as SettingsIcon, ChevronLeft, ChevronRight, Clock, BarChart3, Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { useRoutines } from '../hooks/useRoutines';
 import { useCurrentTime } from '../hooks/useCurrentTime';
 import { TimeColumn } from './TimeColumn';
@@ -35,8 +35,34 @@ export const Dashboard = () => {
 
     const nextRoutine = getNextRoutine();
 
+    // Close sidebar on mobile by default
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 640) {
+                setSidebarOpen(false);
+            } else {
+                setSidebarOpen(true);
+            }
+        };
+
+        // Set initial state
+        handleResize();
+
+        // Listen to window resize
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
+    };
+
+    const handleNavClick = (view) => {
+        setActiveView(view);
+        // Auto-close sidebar on mobile after navigation
+        if (window.innerWidth <= 640) {
+            setSidebarOpen(false);
+        }
     };
 
     const handleEdit = (routine) => {
@@ -93,7 +119,7 @@ export const Dashboard = () => {
                     <nav className="sidebar-nav">
                         <button
                             className={`nav-item ${activeView === 'routines' ? 'active' : ''}`}
-                            onClick={() => setActiveView('routines')}
+                            onClick={() => handleNavClick('routines')}
                             title="Inicio"
                         >
                             <Home size={20} />
@@ -101,7 +127,7 @@ export const Dashboard = () => {
                         </button>
                         <button
                             className={`nav-item ${activeView === 'calendar' ? 'active' : ''}`}
-                            onClick={() => setActiveView('calendar')}
+                            onClick={() => handleNavClick('calendar')}
                             title="Calendario"
                         >
                             <CalendarIcon size={20} />
@@ -109,7 +135,7 @@ export const Dashboard = () => {
                         </button>
                         <button
                             className={`nav-item ${activeView === 'timer' ? 'active' : ''}`}
-                            onClick={() => setActiveView('timer')}
+                            onClick={() => handleNavClick('timer')}
                             title="Cronómetro"
                         >
                             <Clock size={20} />
@@ -117,7 +143,7 @@ export const Dashboard = () => {
                         </button>
                         <button
                             className={`nav-item ${activeView === 'stats' ? 'active' : ''}`}
-                            onClick={() => setActiveView('stats')}
+                            onClick={() => handleNavClick('stats')}
                             title="Estadísticas"
                         >
                             <BarChart3 size={20} />
@@ -125,7 +151,7 @@ export const Dashboard = () => {
                         </button>
                         <button
                             className={`nav-item ${activeView === 'settings' ? 'active' : ''}`}
-                            onClick={() => setActiveView('settings')}
+                            onClick={() => handleNavClick('settings')}
                             title="Configuración"
                         >
                             <SettingsIcon size={20} />
@@ -146,9 +172,18 @@ export const Dashboard = () => {
 
             {/* Main Content Area */}
             <main className={`main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-                {/* Sidebar Toggle Button */}
+                {/* Mobile Menu Toggle (Hamburger) */}
                 <button
-                    className="sidebar-toggle-btn"
+                    className="mobile-menu-toggle"
+                    onClick={toggleSidebar}
+                    aria-label="Toggle Menu"
+                >
+                    {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+
+                {/* Desktop Sidebar Toggle Button */}
+                <button
+                    className="sidebar-toggle-btn desktop-only"
                     onClick={toggleSidebar}
                     aria-label="Toggle Sidebar"
                     title={sidebarOpen ? "Ocultar panel" : "Mostrar panel"}
