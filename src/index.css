@@ -433,3 +433,61 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+
+/* Responsive Variables */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .modal {
+    width: 95%;
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+
+  :root {
+    --space-xs: 0.2rem;
+    --space-sm: 0.4rem;
+    --space-md: 0.75rem;
+    --space-lg: 1.25rem;
+    --space-xl: 1.75rem;
+    --space-2xl: 2.5rem;
+  }
+
+  .container {
+    padding: 0 var(--space-sm);
+  }
+
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .btn {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .modal {
+    width: 95%;
+    padding: var(--space-md);
+  }
+}

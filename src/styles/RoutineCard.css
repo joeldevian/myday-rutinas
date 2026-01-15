@@ -216,3 +216,85 @@
     background: var(--bg-primary);
     color: var(--text-tertiary);
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .routine-card {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .routine-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+        top: -6px;
+    }
+
+    .routine-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .routine-title {
+        font-size: 13px;
+    }
+
+    .routine-time {
+        font-size: 11px;
+    }
+
+    .routine-time-separator {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 640px) {
+    .routine-card {
+        padding: var(--space-sm);
+    }
+
+    .routine-card-main {
+        gap: var(--space-sm);
+    }
+
+    .routine-checkbox input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+    }
+
+    .routine-badge {
+        font-size: 9px;
+        padding: 2px 6px;
+        right: var(--space-sm);
+    }
+
+    .routine-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .routine-title {
+        font-size: 12px;
+    }
+
+    .routine-time {
+        font-size: 10px;
+    }
+
+    .routine-time-separator {
+        font-size: 10px;
+    }
+
+    .routine-menu-btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    .routine-menu {
+        min-width: 120px;
+    }
+
+    .menu-item {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 12px;
+    }
+}
