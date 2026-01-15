@@ -19,7 +19,7 @@ export const RoutineCard = ({
 
     // Determinar estado visual
     const isPast = isPastTime(routine.time);
-    const isCurrent = isCurrentTime(routine.time);
+    const isCurrent = isCurrentTime(routine.time, routine.endTime);
 
     const cardClass = `routine-card ${routine.completed ? 'completed' : ''} ${isCurrent ? 'current' : isPast ? 'past' : 'future'
         }`;

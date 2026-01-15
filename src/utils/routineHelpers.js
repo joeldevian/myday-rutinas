@@ -37,20 +37,35 @@ export const isPastTime = (time) => {
 };
 
 /**
- * Verifica si una hora es la actual (coincide la hora HH solamente)
- * Muestra "AHORA" si la hora actual coincide con la hora de la rutina
- * No importan los minutos - las rutinas se manejan por horas
- * @param {string} time - Hora en formato "HH:mm"
+ * Verifica si la hora actual está dentro del rango de la rutina
+ * Muestra "AHORA" si la hora actual está entre la hora de inicio y fin
+ * @param {string} startTime - Hora de inicio en formato "HH:mm"
+ * @param {string} endTime - Hora de fin en formato "HH:mm" (opcional)
  * @returns {boolean}
  */
-export const isCurrentTime = (time) => {
+export const isCurrentTime = (startTime, endTime = null) => {
     const now = new Date();
     const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
 
-    const [routineHour] = time.split(':').map(Number);
+    // Convertir hora actual a minutos desde medianoche
+    const currentTotalMinutes = currentHour * 60 + currentMinute;
 
-    // Solo comparar la hora (HH), ignorar los minutos
-    return currentHour === routineHour;
+    // Parsear hora de inicio
+    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const startTotalMinutes = startHour * 60 + startMinute;
+
+    // Si no hay hora de fin, usar comportamiento antiguo (solo hora)
+    if (!endTime) {
+        return currentHour === startHour;
+    }
+
+    // Parsear hora de fin
+    const [endHour, endMinute] = endTime.split(':').map(Number);
+    const endTotalMinutes = endHour * 60 + endMinute;
+
+    // Verificar si la hora actual está dentro del rango [inicio, fin)
+    return currentTotalMinutes >= startTotalMinutes && currentTotalMinutes < endTotalMinutes;
 };
 
 /**
