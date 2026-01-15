@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as Icons from 'lucide-react';
 import { isPastTime, isCurrentTime } from '../utils/routineHelpers';
+import { ConfirmDialog } from './ConfirmDialog';
 import '../styles/RoutineCard.css';
 
 export const RoutineCard = ({
@@ -11,6 +12,7 @@ export const RoutineCard = ({
     isNext = false
 }) => {
     const [showMenu, setShowMenu] = useState(false);
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
     // Obtener el icono dinámicamente
     const IconComponent = Icons[routine.icon] || Icons.Circle;
@@ -34,79 +36,97 @@ export const RoutineCard = ({
 
     const handleDelete = () => {
         setShowMenu(false);
-        if (window.confirm(`¿Eliminar "${routine.title}"?`)) {
-            onDelete(routine.id);
-        }
+        setShowConfirmDelete(true);
+    };
+
+    const confirmDelete = () => {
+        setShowConfirmDelete(false);
+        onDelete(routine.id);
+    };
+
+    const cancelDelete = () => {
+        setShowConfirmDelete(false);
     };
 
     return (
-        <div className={cardClass}>
-            {/* Badges */}
-            {isCurrent && (
-                <div className="routine-badge badge-now">AHORA</div>
-            )}
-            {isNext && !isCurrent && !isPast && (
-                <div className="routine-badge badge-next">SIGUIENTE</div>
-            )}
+        <>
+            <div className={cardClass}>
+                {/* Badges */}
+                {isCurrent && (
+                    <div className="routine-badge badge-now">AHORA</div>
+                )}
+                {isNext && !isCurrent && !isPast && (
+                    <div className="routine-badge badge-next">SIGUIENTE</div>
+                )}
 
-            <div className="routine-card-main" onClick={() => onToggleComplete(routine.id)}>
-                {/* Checkbox */}
-                <div className="routine-checkbox">
-                    <input
-                        type="checkbox"
-                        checked={routine.completed}
-                        onChange={() => onToggleComplete(routine.id)}
-                        onClick={(e) => e.stopPropagation()}
-                    />
-                </div>
+                <div className="routine-card-main" onClick={() => onToggleComplete(routine.id)}>
+                    {/* Checkbox */}
+                    <div className="routine-checkbox">
+                        <input
+                            type="checkbox"
+                            checked={routine.completed}
+                            onChange={() => onToggleComplete(routine.id)}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
 
-                {/* Icon */}
-                <div className="routine-icon">
-                    <IconComponent size={20} />
-                </div>
+                    {/* Icon */}
+                    <div className="routine-icon">
+                        <IconComponent size={20} />
+                    </div>
 
-                {/* Content */}
-                <div className="routine-content">
-                    <h4 className="routine-title">{routine.title}</h4>
-                    <div className="routine-time-range">
-                        <span className="routine-time">{routine.time}</span>
-                        {routine.endTime && (
+                    {/* Content */}
+                    <div className="routine-content">
+                        <h4 className="routine-title">{routine.title}</h4>
+                        <div className="routine-time-range">
+                            <span className="routine-time">{routine.time}</span>
+                            {routine.endTime && (
+                                <>
+                                    <span className="routine-time-separator"> - </span>
+                                    <span className="routine-time">{routine.endTime}</span>
+                                </>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Menu Button - Now inline */}
+                    <div className="routine-actions" onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="routine-menu-btn"
+                            onClick={handleMenuToggle}
+                            aria-label="Opciones"
+                        >
+                            <Icons.MoreVertical size={16} />
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        {showMenu && (
                             <>
-                                <span className="routine-time-separator"> - </span>
-                                <span className="routine-time">{routine.endTime}</span>
+                                <div className="menu-backdrop" onClick={() => setShowMenu(false)} />
+                                <div className="routine-menu">
+                                    <button onClick={handleEdit} className="menu-item">
+                                        <Icons.Edit size={16} />
+                                        <span>Editar</span>
+                                    </button>
+                                    <button onClick={handleDelete} className="menu-item menu-item-danger">
+                                        <Icons.Trash2 size={16} />
+                                        <span>Eliminar</span>
+                                    </button>
+                                </div>
                             </>
                         )}
                     </div>
                 </div>
-
-                {/* Menu Button - Now inline */}
-                <div className="routine-actions" onClick={(e) => e.stopPropagation()}>
-                    <button
-                        className="routine-menu-btn"
-                        onClick={handleMenuToggle}
-                        aria-label="Opciones"
-                    >
-                        <Icons.MoreVertical size={16} />
-                    </button>
-
-                    {/* Dropdown Menu */}
-                    {showMenu && (
-                        <>
-                            <div className="menu-backdrop" onClick={() => setShowMenu(false)} />
-                            <div className="routine-menu">
-                                <button onClick={handleEdit} className="menu-item">
-                                    <Icons.Edit size={16} />
-                                    <span>Editar</span>
-                                </button>
-                                <button onClick={handleDelete} className="menu-item menu-item-danger">
-                                    <Icons.Trash2 size={16} />
-                                    <span>Eliminar</span>
-                                </button>
-                            </div>
-                        </>
-                    )}
-                </div>
             </div>
-        </div>
+
+            {/* Confirm Delete Dialog */}
+            <ConfirmDialog
+                isOpen={showConfirmDelete}
+                title="¿Eliminar rutina?"
+                message={`¿Estás seguro de que quieres eliminar "${routine.title}"? Esta acción no se puede deshacer.`}
+                onConfirm={confirmDelete}
+                onCancel={cancelDelete}
+            />
+        </>
     );
 };
