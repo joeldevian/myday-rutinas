@@ -100,4 +100,15 @@ export const availableIcons = [
     'Tv',
     'ShoppingCart',
     'Car',
+    // Nuevos iconos
+    'Brain',          // Estudio / Aprendizaje
+    'Footprints',     // Caminar
+    'CalendarDays',   // Agenda / Planificación
+    'StickyNote',     // Notas / Notion
+    'UtensilsCrossed', // Cena / Comida especial
+    'Bike',           // Ciclismo / Ejercicio
+    'Pill',           // Medicamentos / Salud
+    'GlassWater',     // Hidratación
+    'ClipboardList',  // Tareas / Lista
+    'Sparkles',       // Meditación / Mindfulness
 ];
