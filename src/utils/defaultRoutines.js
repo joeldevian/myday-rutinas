@@ -106,9 +106,4 @@ export const availableIcons = [
     'CalendarDays',   // Agenda / Planificación
     'StickyNote',     // Notas / Notion
     'UtensilsCrossed', // Cena / Comida especial
-    'Bike',           // Ciclismo / Ejercicio
-    'Pill',           // Medicamentos / Salud
-    'GlassWater',     // Hidratación
-    'ClipboardList',  // Tareas / Lista
-    'Sparkles',       // Meditación / Mindfulness
 ];
