@@ -129,9 +129,36 @@ export const useStats = (routines, userId) => {
         });
     };
 
+    /**
+     * Guardar estadísticas del día anterior si es necesario
+     * Se llama cuando se detecta un cambio de día
+     */
+    const saveYesterdayIfNeeded = (yesterdayRoutines) => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayKey = yesterday.toISOString().split('T')[0];
+
+        // Solo guardar si no existe ya un registro para ayer
+        if (!statsHistory[yesterdayKey] && yesterdayRoutines && yesterdayRoutines.length > 0) {
+            const total = yesterdayRoutines.length;
+            const completed = yesterdayRoutines.filter(r => r.completed).length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            setStatsHistory(prev => ({
+                ...prev,
+                [yesterdayKey]: {
+                    total,
+                    completed,
+                    percentage
+                }
+            }));
+        }
+    };
+
     return {
         statsHistory,
         saveCurrentDay,
+        saveYesterdayIfNeeded,
         getLastNDays,
         getCurrentDaySnapshot,
         cleanOldData

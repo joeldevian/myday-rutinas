@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { defaultRoutines } from '../utils/defaultRoutines';
 import { generateId, getTimeOfDay, sortRoutinesByTime } from '../utils/routineHelpers';
 import { getStorageKey } from '../utils/storageKeys';
+import { useStats } from './useStats';
 
 /**
  * Custom hook para manejar rutinas con CRUD y persistencia
@@ -14,6 +15,10 @@ export const useRoutines = (userId) => {
     // Generate user-specific storage keys
     const STORAGE_KEY = getStorageKey('routines', userId);
     const LAST_RESET_KEY = getStorageKey('last_reset', userId);
+    const LAST_STATS_SAVE_KEY = getStorageKey('last_stats_save', userId);
+
+    // Stats hook para guardar automáticamente
+    const { saveCurrentDay, saveYesterdayIfNeeded } = useStats(routines, userId);
 
     // Verificar si es un nuevo día y resetear completadas
     const checkAndResetDaily = (routines) => {
@@ -21,6 +26,12 @@ export const useRoutines = (userId) => {
         const lastReset = localStorage.getItem(LAST_RESET_KEY);
 
         if (lastReset !== today) {
+            // IMPORTANTE: Guardar estadísticas del día anterior antes de resetear
+            // Esto asegura que se guarden incluso si la app estuvo cerrada
+            if (routines && routines.length > 0) {
+                saveYesterdayIfNeeded(routines);
+            }
+
             // Es un nuevo día - resetear rutinas completadas
             const resetRoutines = routines.map(routine => ({
                 ...routine,
@@ -113,6 +124,25 @@ export const useRoutines = (userId) => {
 
         return () => clearInterval(interval);
     }, []);
+
+    // Guardar estadísticas automáticamente cuando cambie el progreso
+    useEffect(() => {
+        if (!loading && routines.length > 0 && userId) {
+            const today = new Date().toISOString().split('T')[0];
+            const lastSave = localStorage.getItem(LAST_STATS_SAVE_KEY);
+
+            // Guardar si han pasado al menos 10 segundos desde el último guardado
+            // o si es el primer guardado del día
+            const shouldSave = !lastSave ||
+                lastSave.split('_')[0] !== today ||
+                (Date.now() - parseInt(lastSave.split('_')[1] || '0')) > 10000;
+
+            if (shouldSave) {
+                saveCurrentDay();
+                localStorage.setItem(LAST_STATS_SAVE_KEY, `${today}_${Date.now()}`);
+            }
+        }
+    }, [routines, loading, userId, saveCurrentDay, LAST_STATS_SAVE_KEY]);
 
     /**
      * Crear nueva rutina
