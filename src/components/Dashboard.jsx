@@ -100,7 +100,7 @@ export const Dashboard = () => {
                     <div className="sidebar-user">
                         <img
                             src={avatarError || !user?.picture ?
-                                `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'User')}&background=10b981&color=fff&size=128`
+                                `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'User')}&background=ff6b35&color=fff&size=128`
                                 : user.picture}
                             alt={user?.name}
                             className="sidebar-avatar"

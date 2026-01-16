@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
           id: firebaseUser.uid,
           email: firebaseUser.email,
           name: firebaseUser.displayName || 'Usuario',
-          picture: firebaseUser.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(firebaseUser.displayName || 'User')}&background=10b981&color=fff&size=128`,
+          picture: firebaseUser.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(firebaseUser.displayName || 'User')}&background=ff6b35&color=fff&size=128`,
           createdAt: firebaseUser.metadata.creationTime,
         };
         setUser(userData);
