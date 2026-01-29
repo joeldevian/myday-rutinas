@@ -16,10 +16,10 @@
     align-items: center;
     margin-bottom: var(--space-lg);
     padding: var(--space-md) var(--space-lg);
-    background: linear-gradient(135deg, #1a0a0a 0%, #2a1515 100%);
-    border: 1px solid #4a2020;
+    background: linear-gradient(135deg, #0a1a0a 0%, #152a15 100%);
+    border: 1px solid #204a20;
     border-radius: var(--radius-md);
-    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 139, 0, 0.2);
 }
 
 .header-title-group {
@@ -29,8 +29,8 @@
 }
 
 .header-skull {
-    color: #dc2626;
-    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.5));
+    color: #22c55e;
+    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.5));
 }
 
 .header-text h2 {
@@ -38,8 +38,8 @@
     font-size: var(--font-size-xl);
     font-weight: 800;
     letter-spacing: 3px;
-    color: #fef2f2;
-    text-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+    color: #f0fdf4;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
 }
 
 .header-subtitle {
@@ -85,7 +85,7 @@
     padding: var(--space-md) var(--space-lg);
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-left: 3px solid #dc2626;
+    border-left: 3px solid #22c55e;
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -93,12 +93,12 @@
 
 .mission-row:hover {
     background: var(--bg-card-hover);
-    border-color: #dc2626;
+    border-color: #22c55e;
     transform: translateX(4px);
 }
 
 .mission-row.completed {
-    border-left-color: #22c55e;
+    border-left-color: #dc2626;
     opacity: 0.8;
 }
 
@@ -131,7 +131,7 @@
     width: 24px;
     height: 24px;
     background: transparent;
-    border: 2px solid #dc2626;
+    border: 2px solid #22c55e;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -140,8 +140,8 @@
 }
 
 .mission-checkbox input:checked+.checkbox-custom {
-    background: #22c55e;
-    border-color: #22c55e;
+    background: #dc2626;
+    border-color: #dc2626;
 }
 
 .checkbox-custom svg {
@@ -149,8 +149,8 @@
 }
 
 .mission-row:hover .checkbox-custom {
-    border-color: #ef4444;
-    box-shadow: 0 0 8px rgba(220, 38, 38, 0.4);
+    border-color: #16a34a;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
 }
 
 /* Título de misión */
@@ -227,9 +227,9 @@
     gap: var(--space-sm);
     padding: var(--space-md);
     background: transparent;
-    border: 2px dashed #4a2020;
+    border: 2px dashed #204a20;
     border-radius: var(--radius-md);
-    color: #dc2626;
+    color: #22c55e;
     font-weight: 600;
     font-size: var(--font-size-sm);
     letter-spacing: 1px;
@@ -238,9 +238,9 @@
 }
 
 .add-mission-btn:hover {
-    background: rgba(220, 38, 38, 0.1);
-    border-color: #dc2626;
-    box-shadow: 0 0 15px rgba(220, 38, 38, 0.2);
+    background: rgba(34, 197, 94, 0.1);
+    border-color: #22c55e;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
 }
 
 /* Sección de progreso con logo */
@@ -249,8 +249,8 @@
     align-items: center;
     gap: var(--space-lg);
     padding: var(--space-lg);
-    background: linear-gradient(135deg, #1a0a0a 0%, #1f1f1f 100%);
-    border: 1px solid #3a2020;
+    background: linear-gradient(135deg, #0a1a0a 0%, #1f1f1f 100%);
+    border: 1px solid #203a20;
     border-radius: var(--radius-md);
 }
 
@@ -291,7 +291,7 @@
 
 .progress-fill-missions {
     height: 100%;
-    background: linear-gradient(90deg, #dc2626 0%, #f97316 50%, #fbbf24 100%);
+    background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
     border-radius: var(--radius-full);
     transition: width var(--transition-base);
     box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
@@ -315,7 +315,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.3));
+    filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));
 }
 
 .missions-progress-section:hover .progress-logo {
@@ -331,13 +331,13 @@
     justify-content: center;
     padding: var(--space-2xl);
     text-align: center;
-    background: linear-gradient(135deg, #1a0a0a 0%, #1f1f1f 100%);
-    border: 2px dashed #3a2020;
+    background: linear-gradient(135deg, #0a1a0a 0%, #1f1f1f 100%);
+    border: 2px dashed #203a20;
     border-radius: var(--radius-lg);
 }
 
 .empty-skull {
-    color: #4a2020;
+    color: #204a20;
     margin-bottom: var(--space-md);
     animation: pulse 2s ease-in-out infinite;
 }
@@ -357,7 +357,7 @@
 }
 
 .empty-state-missions h3 {
-    color: #dc2626;
+    color: #22c55e;
     font-weight: 800;
     letter-spacing: 2px;
     margin-bottom: var(--space-sm);
@@ -370,18 +370,18 @@
 
 /* Botón de peligro estilo militar */
 .btn-danger {
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
     color: white;
     font-weight: 700;
     letter-spacing: 1px;
-    border: 1px solid #ef4444;
-    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    border: 1px solid #16a34a;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
 .btn-danger:hover {
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, #16a34a 0%, #166534 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
 }
 
 .btn-danger:disabled {
@@ -392,13 +392,13 @@
 
 /* Modal con tema militar */
 .mission-modal-overlay {
-    background: rgba(10, 0, 0, 0.85);
+    background: rgba(0, 10, 0, 0.85);
 }
 
 .mission-modal {
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-    border: 1px solid #4a2020;
-    box-shadow: 0 0 40px rgba(220, 38, 38, 0.2);
+    border: 1px solid #204a20;
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
 }
 
 .mission-modal-header {
@@ -407,19 +407,19 @@
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-md);
-    border-bottom: 1px solid #3a2020;
+    border-bottom: 1px solid #203a20;
 }
 
 .modal-skull {
-    color: #dc2626;
-    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.5));
+    color: #22c55e;
+    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.5));
 }
 
 .mission-modal h3 {
     margin: 0;
     font-weight: 800;
     letter-spacing: 3px;
-    color: #fef2f2;
+    color: #f0fdf4;
 }
 
 .mission-modal label {
@@ -435,16 +435,16 @@
     width: 100%;
     padding: var(--space-md);
     background: #1f1f1f;
-    border: 1px solid #3a2020;
+    border: 1px solid #203a20;
     border-radius: var(--radius-md);
     color: var(--text-primary);
     font-size: var(--font-size-base);
 }
 
 .mission-modal input:focus {
-    border-color: #dc2626;
+    border-color: #22c55e;
     outline: none;
-    box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
 }
 
 /* Responsive */
