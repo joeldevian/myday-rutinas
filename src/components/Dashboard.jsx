@@ -1,5 +1,5 @@
 import { useAuth } from '../contexts/AuthContext';
-import { LogOut, Home, Calendar as CalendarIcon, Settings as SettingsIcon, ChevronLeft, ChevronRight, Clock, BarChart3, Menu, X } from 'lucide-react';
+import { LogOut, Home, Calendar as CalendarIcon, Settings as SettingsIcon, ChevronLeft, ChevronRight, Clock, BarChart3, Menu, X, Target } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRoutines } from '../hooks/useRoutines';
 import { useCurrentTime } from '../hooks/useCurrentTime';
@@ -9,6 +9,7 @@ import { Calendar } from './Calendar';
 import { Timer } from './Timer';
 import { Statistics } from './Statistics';
 import { Settings } from './Settings';
+import { WeeklyGoalsGrid } from './WeeklyGoalsGrid';
 import { isPastTime } from '../utils/routineHelpers';
 import '../styles/Dashboard.css';
 
@@ -18,7 +19,7 @@ export const Dashboard = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [editingRoutine, setEditingRoutine] = useState(null);
     const [defaultTimeOfDay, setDefaultTimeOfDay] = useState(null);
-    const [activeView, setActiveView] = useState('routines'); // 'routines', 'calendar', 'timer', 'stats', 'settings'
+    const [activeView, setActiveView] = useState('routines'); // 'routines', 'sistema', 'calendar', 'timer', 'stats', 'settings'
     const [avatarError, setAvatarError] = useState(false);
 
     // Rutinas hook - pass userId
@@ -126,6 +127,14 @@ export const Dashboard = () => {
                             {sidebarOpen && <span>Inicio</span>}
                         </button>
                         <button
+                            className={`nav-item ${activeView === 'sistema' ? 'active' : ''}`}
+                            onClick={() => handleNavClick('sistema')}
+                            title="Sistema"
+                        >
+                            <Target size={20} />
+                            {sidebarOpen && <span>Sistema</span>}
+                        </button>
+                        <button
                             className={`nav-item ${activeView === 'calendar' ? 'active' : ''}`}
                             onClick={() => handleNavClick('calendar')}
                             title="Calendario"
@@ -230,6 +239,9 @@ export const Dashboard = () => {
                                 />
                             </div>
                         )
+                    ) : activeView === 'sistema' ? (
+                        // Sistema - Weekly Goals View
+                        <WeeklyGoalsGrid userId={user?.id} />
                     ) : activeView === 'calendar' ? (
                         // Calendar View
                         <Calendar userId={user?.id} />
