@@ -16,10 +16,10 @@
     align-items: center;
     margin-bottom: var(--space-lg);
     padding: var(--space-md) var(--space-lg);
-    background: linear-gradient(135deg, #0a1a0a 0%, #152a15 100%);
-    border: 1px solid #204a20;
+    background: linear-gradient(135deg, #0a0f1a 0%, #151f2a 100%);
+    border: 1px solid #20304a;
     border-radius: var(--radius-md);
-    box-shadow: 0 4px 20px rgba(0, 139, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
 }
 
 .header-title-group {
@@ -29,8 +29,8 @@
 }
 
 .header-skull {
-    color: #22c55e;
-    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.5));
+    color: #3b82f6;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
 }
 
 .header-text h2 {
@@ -38,8 +38,8 @@
     font-size: var(--font-size-xl);
     font-weight: 800;
     letter-spacing: 3px;
-    color: #f0fdf4;
-    text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+    color: #f0f4ff;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
 
 .header-subtitle {
@@ -85,7 +85,7 @@
     padding: var(--space-md) var(--space-lg);
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-left: 3px solid #22c55e;
+    border-left: 3px solid #3b82f6;
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -93,7 +93,7 @@
 
 .mission-row:hover {
     background: var(--bg-card-hover);
-    border-color: #22c55e;
+    border-color: #3b82f6;
     transform: translateX(4px);
 }
 
@@ -131,7 +131,7 @@
     width: 24px;
     height: 24px;
     background: transparent;
-    border: 2px solid #22c55e;
+    border: 2px solid #3b82f6;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -149,8 +149,8 @@
 }
 
 .mission-row:hover .checkbox-custom {
-    border-color: #16a34a;
-    box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+    border-color: #2563eb;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
 /* Título de misión */
@@ -227,9 +227,9 @@
     gap: var(--space-sm);
     padding: var(--space-md);
     background: transparent;
-    border: 2px dashed #204a20;
+    border: 2px dashed #20304a;
     border-radius: var(--radius-md);
-    color: #22c55e;
+    color: #3b82f6;
     font-weight: 600;
     font-size: var(--font-size-sm);
     letter-spacing: 1px;
@@ -238,9 +238,9 @@
 }
 
 .add-mission-btn:hover {
-    background: rgba(34, 197, 94, 0.1);
-    border-color: #22c55e;
-    box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
 }
 
 /* Sección de progreso con logo */
@@ -249,8 +249,8 @@
     align-items: center;
     gap: var(--space-lg);
     padding: var(--space-lg);
-    background: linear-gradient(135deg, #0a1a0a 0%, #1f1f1f 100%);
-    border: 1px solid #203a20;
+    background: linear-gradient(135deg, #0a0f1a 0%, #1f1f1f 100%);
+    border: 1px solid #203a3a;
     border-radius: var(--radius-md);
 }
 
@@ -315,7 +315,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
 }
 
 .missions-progress-section:hover .progress-logo {
@@ -331,13 +331,13 @@
     justify-content: center;
     padding: var(--space-2xl);
     text-align: center;
-    background: linear-gradient(135deg, #0a1a0a 0%, #1f1f1f 100%);
-    border: 2px dashed #203a20;
+    background: linear-gradient(135deg, #0a0f1a 0%, #1f1f1f 100%);
+    border: 2px dashed #20304a;
     border-radius: var(--radius-lg);
 }
 
 .empty-skull {
-    color: #204a20;
+    color: #20304a;
     margin-bottom: var(--space-md);
     animation: pulse 2s ease-in-out infinite;
 }
@@ -357,7 +357,7 @@
 }
 
 .empty-state-missions h3 {
-    color: #22c55e;
+    color: #3b82f6;
     font-weight: 800;
     letter-spacing: 2px;
     margin-bottom: var(--space-sm);
@@ -370,18 +370,18 @@
 
 /* Botón de peligro estilo militar */
 .btn-danger {
-    background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
     font-weight: 700;
     letter-spacing: 1px;
-    border: 1px solid #16a34a;
-    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+    border: 1px solid #2563eb;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .btn-danger:hover {
-    background: linear-gradient(135deg, #16a34a 0%, #166534 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 .btn-danger:disabled {
@@ -392,13 +392,13 @@
 
 /* Modal con tema militar */
 .mission-modal-overlay {
-    background: rgba(0, 10, 0, 0.85);
+    background: rgba(0, 5, 15, 0.85);
 }
 
 .mission-modal {
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-    border: 1px solid #204a20;
-    box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
+    border: 1px solid #20304a;
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
 }
 
 .mission-modal-header {
@@ -407,19 +407,19 @@
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-md);
-    border-bottom: 1px solid #203a20;
+    border-bottom: 1px solid #20304a;
 }
 
 .modal-skull {
-    color: #22c55e;
-    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.5));
+    color: #3b82f6;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
 }
 
 .mission-modal h3 {
     margin: 0;
     font-weight: 800;
     letter-spacing: 3px;
-    color: #f0fdf4;
+    color: #f0f4ff;
 }
 
 .mission-modal label {
@@ -435,16 +435,110 @@
     width: 100%;
     padding: var(--space-md);
     background: #1f1f1f;
-    border: 1px solid #203a20;
+    border: 1px solid #20304a;
     border-radius: var(--radius-md);
     color: var(--text-primary);
     font-size: var(--font-size-base);
 }
 
 .mission-modal input:focus {
-    border-color: #22c55e;
+    border-color: #3b82f6;
     outline: none;
-    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+/* Sección principal: Misiones + Méritos lado a lado */
+.missions-main-section {
+    display: flex;
+    gap: var(--space-md);
+    align-items: stretch;
+}
+
+.missions-main-section .missions-list {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Cuadro de Méritos */
+.merits-box {
+    width: 200px;
+    flex-shrink: 0;
+    padding: var(--space-md);
+    background: linear-gradient(135deg, #0a0f1a 0%, #151f2a 100%);
+    border: 1px solid #20304a;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.merits-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #3b82f6;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid #20304a;
+}
+
+.merits-levels {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
+.merit-level {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-sm);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+}
+
+.merit-count {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.merit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 22px;
+}
+
+.merit-icon.novato {
+    color: #737373;
+}
+
+.merit-icon.elite {
+    color: #fbbf24;
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.5));
+}
+
+.merit-icon.leyenda {
+    color: #dc2626;
+    filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.6));
+}
+
+.merit-name {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-tertiary);
+    text-align: center;
 }
 
 /* Responsive */
@@ -459,9 +553,32 @@
         gap: var(--space-md);
     }
 
+    .missions-main-section {
+        flex-direction: column;
+    }
+
     .missions-progress-section {
         flex-direction: column;
         text-align: center;
+    }
+
+    .merits-box {
+        max-width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .merits-header {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        border-bottom: none;
+        border-right: 1px solid #20304a;
+        padding-right: var(--space-xs);
+        padding-bottom: 0;
+    }
+
+    .merits-levels {
+        flex: 1;
     }
 
     .progress-logo {
@@ -478,5 +595,15 @@
 
     .mission-row {
         padding: var(--space-sm) var(--space-md);
+    }
+
+    .merits-header {
+        writing-mode: horizontal-tb;
+        border-right: none;
+        border-bottom: 1px solid #20304a;
+    }
+
+    .merits-box {
+        flex-direction: column;
     }
 }

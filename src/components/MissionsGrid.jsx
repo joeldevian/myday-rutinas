@@ -152,6 +152,7 @@ const MissionModal = ({ isOpen, onClose, onSave, mission }) => {
 export const MissionsGrid = ({ userId }) => {
     const {
         missions,
+        merits,
         loading,
         createMission,
         updateMission,
@@ -216,40 +217,78 @@ export const MissionsGrid = ({ userId }) => {
                 </div>
             </div>
 
-            {/* Contenedor principal con la imagen de fondo */}
+            {/* Contenedor principal */}
             <div className="missions-body">
-                {/* Lista de misiones */}
-                <div className="missions-list">
-                    {missions.length === 0 ? (
-                        <div className="empty-state-missions">
-                            <SkullIcon size={64} className="empty-skull" />
-                            <h3>SIN MISIONES ASIGNADAS</h3>
-                            <p>Añade tus objetivos para este mes</p>
-                            <button className="btn btn-danger" onClick={handleAddMission}>
-                                <Plus size={18} />
-                                ASIGNAR MISIÓN
-                            </button>
+                {/* Sección superior: Misiones + Méritos lado a lado */}
+                <div className="missions-main-section">
+                    {/* Lista de misiones (izquierda) */}
+                    <div className="missions-list">
+                        {missions.length === 0 ? (
+                            <div className="empty-state-missions">
+                                <SkullIcon size={64} className="empty-skull" />
+                                <h3>SIN MISIONES ASIGNADAS</h3>
+                                <p>Añade tus objetivos para este mes</p>
+                                <button className="btn btn-danger" onClick={handleAddMission}>
+                                    <Plus size={18} />
+                                    ASIGNAR MISIÓN
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                {missions.map((mission) => (
+                                    <MissionRow
+                                        key={mission.id}
+                                        mission={mission}
+                                        onToggle={toggleMissionComplete}
+                                        onEdit={handleEditMission}
+                                        onDelete={deleteMission}
+                                    />
+                                ))}
+                                <button className="add-mission-btn" onClick={handleAddMission}>
+                                    <Plus size={18} />
+                                    AGREGAR MISIÓN
+                                </button>
+                            </>
+                        )}
+                    </div>
+
+                    {/* Cuadro de Méritos (derecha) - solo si hay misiones */}
+                    {missions.length > 0 && (
+                        <div className="merits-box">
+                            <div className="merits-header">
+                                <SkullIcon size={14} />
+                                <span>MÉRITOS 2026</span>
+                            </div>
+                            <div className="merits-levels">
+                                <div className="merit-level">
+                                    <div className="merit-count">{merits.novato}</div>
+                                    <div className="merit-icon novato">
+                                        <SkullIcon size={16} />
+                                    </div>
+                                    <div className="merit-name">Novato</div>
+                                </div>
+                                <div className="merit-level">
+                                    <div className="merit-count">{merits.elite}</div>
+                                    <div className="merit-icon elite">
+                                        <SkullIcon size={14} />
+                                        <SkullIcon size={14} />
+                                    </div>
+                                    <div className="merit-name">Élite</div>
+                                </div>
+                                <div className="merit-level">
+                                    <div className="merit-count">{merits.leyenda}</div>
+                                    <div className="merit-icon leyenda">
+                                        <SkullIcon size={14} />
+                                        <SkullIcon size={14} />
+                                    </div>
+                                    <div className="merit-name">Leyenda</div>
+                                </div>
+                            </div>
                         </div>
-                    ) : (
-                        <>
-                            {missions.map((mission) => (
-                                <MissionRow
-                                    key={mission.id}
-                                    mission={mission}
-                                    onToggle={toggleMissionComplete}
-                                    onEdit={handleEditMission}
-                                    onDelete={deleteMission}
-                                />
-                            ))}
-                            <button className="add-mission-btn" onClick={handleAddMission}>
-                                <Plus size={18} />
-                                AGREGAR MISIÓN
-                            </button>
-                        </>
                     )}
                 </div>
 
-                {/* Barra de progreso con logo */}
+                {/* Barra de progreso abajo (separada) */}
                 {missions.length > 0 && (
                     <div className="missions-progress-section">
                         <div className="progress-content">
