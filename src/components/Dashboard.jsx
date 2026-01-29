@@ -10,6 +10,8 @@ import { Timer } from './Timer';
 import { Statistics } from './Statistics';
 import { Settings } from './Settings';
 import { WeeklyGoalsGrid } from './WeeklyGoalsGrid';
+import { MissionsGrid } from './MissionsGrid';
+import { SkullIcon } from './SkullIcon';
 import { isPastTime } from '../utils/routineHelpers';
 import '../styles/Dashboard.css';
 
@@ -19,7 +21,7 @@ export const Dashboard = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [editingRoutine, setEditingRoutine] = useState(null);
     const [defaultTimeOfDay, setDefaultTimeOfDay] = useState(null);
-    const [activeView, setActiveView] = useState('routines'); // 'routines', 'sistema', 'calendar', 'timer', 'stats', 'settings'
+    const [activeView, setActiveView] = useState('routines'); // 'routines', 'sistema', 'misiones', 'calendar', 'timer', 'stats', 'settings'
     const [avatarError, setAvatarError] = useState(false);
 
     // Rutinas hook - pass userId
@@ -135,6 +137,14 @@ export const Dashboard = () => {
                             {sidebarOpen && <span>Sistema</span>}
                         </button>
                         <button
+                            className={`nav-item ${activeView === 'misiones' ? 'active' : ''}`}
+                            onClick={() => handleNavClick('misiones')}
+                            title="Misiones"
+                        >
+                            <SkullIcon size={20} />
+                            {sidebarOpen && <span>Misiones</span>}
+                        </button>
+                        <button
                             className={`nav-item ${activeView === 'calendar' ? 'active' : ''}`}
                             onClick={() => handleNavClick('calendar')}
                             title="Calendario"
@@ -242,6 +252,9 @@ export const Dashboard = () => {
                     ) : activeView === 'sistema' ? (
                         // Sistema - Weekly Goals View
                         <WeeklyGoalsGrid userId={user?.id} />
+                    ) : activeView === 'misiones' ? (
+                        // Misiones - Monthly Missions View
+                        <MissionsGrid userId={user?.id} />
                     ) : activeView === 'calendar' ? (
                         // Calendar View
                         <Calendar userId={user?.id} />
